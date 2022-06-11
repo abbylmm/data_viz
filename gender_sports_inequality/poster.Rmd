@@ -1,15 +1,49 @@
-<<<<<<< HEAD
+---
+title: "poster"
+output: github_document
+---
 
-=======
-poster
-================
+```{r setup, include=FALSE}
+library(dplyr)
+library(naniar)
+library(skimr)
+library(stringr)
+library(visdat)
+library(DataExplorer)
+library(ggplot2)
+library(plotly)
+library(RColorBrewer)
+library(keras)
+library(tidyr)
+library(reshape2)
+library(grid)
+library(tidyverse)
+library(shadowtext)
+library(wordcloud)
+library(wordcloud2)
+library(tm)
+library(webshot)
+library(htmlwidgets)
+library(viridis)
+library(hrbrthemes)
+my_theme <- function(base_size = 12, base_family = "Helvetica"){
+    theme_minimal() +
+    theme(axis.title.y = element_blank(),
+          plot.title = element_text(face = "bold", size = 10),
+          panel.grid = element_blank(),
+          plot.background = element_rect(fill = 'ghostwhite', color = 'white'),
+          legend.position = 'bottom', legend.title = element_blank(),
+          strip.text.x = element_text(size = 8, face = 'bold'),
+          plot.margin = margin(10, 10, 10, 10))
+}
+```
 
-``` r
+```{r}
 # Gender Inequality in College Sports
 df <- read.csv("C:/Users/munmu/Documents/GitHub/data_viz/gender_sports_inequity/data/EADA_2020.csv")
 ```
 
-``` r
+```{r}
 df2 <- df
 temp <- subset(df2, select = c(School, HDCOACH_SALARY_MEN, HDCOACH_SALARY_WOMEN)) %>% 
   group_by(School) %>% 
@@ -37,9 +71,7 @@ ggplot(melted_temp, aes(fill=variable, y=value, x=School)) +
        caption = "Source: U.S. Department of Education’s Equity in Athletics Data Analysis in 2020")
 ```
 
-![](poster_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
-
-``` r
+```{r}
 df2 <- df
 temp <- subset(df2, select = c(School, 
                                IL_OPEXPPERTEAM_MEN, IL_OPEXPPERTEAM_WOMEN, 
@@ -83,9 +115,7 @@ ggplot(df_melted_temp, aes(x = var, y = n, fill = gender)) + # Fill column
   facet_wrap( ~ School, scales = "free_x")
 ```
 
-![](poster_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
-
-``` r
+```{r}
 temp2 <- read.csv("C:/Users/munmu/Documents/GitHub/data_viz/gender_sports_inequity/data/PARTIC_Sport_Cat.csv")
 temp2 <- subset(temp2, select = -c(PARTIC_MEN, PARTIC_WOMEN)) 
 names(temp2)[names(temp2) == 'PCT_PARTIC_MEN'] <- "Men"
@@ -114,9 +144,7 @@ ggplot(melted_temp, aes(fill=variable, y=value*100, x=Sport)) +
     xlab("Men’s and women’s sports participation (in percentage)")
 ```
 
-![](poster_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
-
-``` r
+```{r}
 temp2 <- read.csv("C:/Users/munmu/Documents/GitHub/data_viz/gender_sports_inequity/data/EXP_Sport_Cat.csv")
 temp2 <- subset(temp2, select = -c(EXP_MEN, EXP_WOMEN))
 names(temp2)[names(temp2) == 'PCT_EXP_MEN'] <- "Men"
@@ -144,6 +172,3 @@ ggplot(melted_temp, aes(fill=variable, y=value*100, x=Sport)) +
   labs(title = "For all Ivy League schools, sports with lowest women's spending", 
        caption = "Source: U.S. Department of Education’s Equity in Athletics Data Analysis in 2020")
 ```
-
-![](poster_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
->>>>>>> 960ad81 (first commit)
